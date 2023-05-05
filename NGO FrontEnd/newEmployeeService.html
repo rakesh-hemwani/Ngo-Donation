@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title text-align="center">Employee portal</title>
+    <style>
+    
+    .myDiv {
+  border: 5px outset red;
+  background-color: lightblue;    
+  text-align: center;
+}
+        .button {
+          background-color: #4CAF50; /* Green */
+          border: none;
+          color: white;
+          padding: 15px 32px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 16px;
+          margin: 4px 2px;
+          cursor: pointer;
+        }
+        
+        .btn1 {background-color: #008CBA;} /* Blue */
+        .btn2 {background-color: #f44336;} /* Red */ 
+        .btn3 {background-color: #e7e7e7; color: black;} /* Gray */ 
+        .btn4{background-color: #555555;} /* Black */
+        </style>   
+</head>
+
+<body>
+
+    <div id="header">
+       
+        <div id="h1right">  
+            <h1></h1>
+           <ul>
+          <button class="button btn1">Add NeedyPerson</button>
+          <button class="button btn2">Delete NeedyPerson</button>
+          <button class="button btn3">NeedyPerson List</button>
+          <button class="button btn4">Update NeedyPerson</button>
+        </ul>
+        </div>
+    </div>
+
+    <div id="content">
+
+     <div class="myDiv" id="div1">
+         Create NeedyPerson
+
+         <form>
+  <div class="form-group">
+    <label for="name1">Name</label>
+    <input type="input" class="form-control" id="name1" placeholder="Name">
+    <label for="phone">Phone-no</label>
+    <input type="input" class="form-control" id="phone" placeholder="Phone"><br>
+    <label for="Address">Address</label>
+    <input type="input" class="form-control" id="add" placeholder="Address">
+    <label for="faminc">Family-income</label>
+    <input type="input" class="form-control" id="faminc" placeholder="Family income">
+  </div>
+ 
+  <button type="button" class="btn btn-default" id="btn5">Add</button>
+
+  <button type="button" class="btn btn-default" id="btn6">Cancel</button>
+</form>
+
+     </div>
+<br>
+  <div class="myDiv" id="div2">
+         Remove NeedyPerson
+
+          <form>
+  <div class="form-group">
+   <div id="myDropdown" class="dropdown-content">
+       <select id="select1">
+       </select>
+  </div>
+  </div>    
+ 
+  <button type="button" id="btn7" class="btn btn-default">Remove</button>
+
+  <button type="button" id="btn8" class="btn btn-default">Cancel</button>
+</form>
+
+     </div>  
+<br>
+     <div class="myDiv" id="div3">
+          NeedyPerson List
+    <br>
+<ul id="listemp">
+</ul>
+<div id="eldiv">
+<ul id="list1" >
+</ul>
+
+</div>
+
+  <button type="button" id="eledit" class="btn btn-default" disabled="">Edit</button>
+  <button type="button" id="elrem" class="btn btn-default" disabled="">Remove</button>
+
+     </div> 
+<br>
+      <div class="myDiv" id="div4">
+         Update NeedyPerson 
+         <form>
+  <div class="form-group">
+    <label for="name2">Name</label>
+    <input type="input" class="form-control" id="name2" placeholder="Name">
+  </div>
+
+   <div class="form-group">
+    <label for="des">Phone-no</label>
+    <input type="input" class="form-control" id="des" placeholder="Phone-no">
+  </div>
+ 
+    <select id="select2">
+       </select>
+
+  <button type="button" id="addadd" class="btn btn-default">Add</button>
+
+  <button type="button" id="addundo" class="btn btn-default">Undo</button>
+</form>
+     </div>
+
+            </div>  
+
+           
+                            
+<script  src="./main.js"> </script>
+</body>
+</html>

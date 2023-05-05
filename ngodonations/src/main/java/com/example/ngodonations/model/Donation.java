@@ -17,7 +17,6 @@ public class Donation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-
     @Column(name = "DonationID")
     private Long donationId;
 

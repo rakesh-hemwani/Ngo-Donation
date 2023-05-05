@@ -1,6 +1,7 @@
 package com.example.ngodonations.controller;
 
 import com.example.ngodonations.exceptions.DuplicateDonorException;
+import com.example.ngodonations.exceptions.InvalidInformation;
 import com.example.ngodonations.exceptions.NoSuchDonorException;
 import com.example.ngodonations.model.Donation;
 import com.example.ngodonations.model.Donor;
@@ -65,7 +66,26 @@ public class DonorController {
         }
     }
 
+
+    public boolean isValid(String password,String phone,String email)throws InvalidInformation{
+        if (phone.length() != 10) {
+            throw new InvalidInformation("Phone Number Not Correct");
+        }
+        String regex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
+        if(!email.matches(regex)){
+            throw new InvalidInformation("Email Not Valid");
+        }
+        if (password.length() < 8) {
+            throw new InvalidInformation("Minimum 8 Character");
+        }
+        return true;
+    }
+
+
+
+
     //Main End Points
+
 
     //Register
     @PostMapping("/register")
@@ -73,12 +93,18 @@ public class DonorController {
         if (donorService.getDonorByEmail(donor.getDonorEmail())!=null){
             throw new DuplicateDonorException("Email already taken");
         }
-        donorService.registerDonor(donor);
+        isValid(donor.getDonorPassword(),donor.getDonorPhone(),donor.getDonorEmail());
+        Boolean flag=donorService.registerDonor(donor);
+        if(!flag)return ResponseEntity.ok("Not Registered check with Information");
         return ResponseEntity.ok("Registered Successfully");
     }
 
     @ExceptionHandler(DuplicateDonorException.class)
     public ResponseEntity<?> handleDuplicateUserException(DuplicateDonorException ex) {
+        return ResponseEntity.badRequest().body(ex.getMessage());
+    }
+    @ExceptionHandler(InvalidInformation.class)
+    public ResponseEntity<?> handleInvalidInformationException(InvalidInformation ex) {
         return ResponseEntity.badRequest().body(ex.getMessage());
     }
 

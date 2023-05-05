@@ -26,7 +26,7 @@ public class Donor {
     private String donorEmail;
 
     @Column(name = "DonorPhone")
-    private Integer donorPhone;
+    private String donorPhone;
 
     @Column(name = "DonorUserName")
     private String donorUsername;
@@ -62,11 +62,11 @@ public class Donor {
         this.donorEmail = donorEmail;
     }
 
-    public Integer getDonorPhone() {
+    public String getDonorPhone() {
         return donorPhone;
     }
 
-    public void setDonorPhone(Integer donorPhone) {
+    public void setDonorPhone(String donorPhone) {
         this.donorPhone = donorPhone;
     }
 

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/needyPeople")
@@ -53,8 +54,8 @@ public class NeedyPeopleController {
 
     @PostMapping("/requestHelp")
     public String requestForHelp(@RequestBody NeedyPeopleRequest request) {
-        NeedyPeople needyPeople=needyPeopleService.getNeedyPersonByName(request.getName());
-        if(needyPeople!=null) {
+        Optional<NeedyPeople> needyPeople=needyPeopleService.getNeedyById(request.getNeedyPeopleId());
+        if(needyPeople.isPresent()) {
             needyPeopleService.requestForHelp(request);
             return "Successfully Request Created";
         }

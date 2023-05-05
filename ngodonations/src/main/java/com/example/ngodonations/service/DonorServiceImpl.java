@@ -2,6 +2,7 @@ package com.example.ngodonations.service;
 
 import com.example.ngodonations.exceptions.DuplicateDonorException;
 import com.example.ngodonations.exceptions.InvalidEmailException;
+import com.example.ngodonations.exceptions.InvalidInformation;
 import com.example.ngodonations.exceptions.NoSuchDonorException;
 import com.example.ngodonations.model.Donation;
 import com.example.ngodonations.model.Donor;
@@ -64,13 +65,22 @@ public class DonorServiceImpl implements DonorService {
 
     //Main Chunk
 
+    public boolean validatePhone(String phoneNumber) throws InvalidInformation {
+        String phoneNumberString = phoneNumber;
+        if (phoneNumberString.length() != 10) {
+            throw new InvalidInformation("Phone Number Not Correct");
+        }
+        return true;
+    }
 
     @Override
     public boolean registerDonor(Donor donor) throws DuplicateDonorException {
         if (getDonorByEmail(donor.getDonorEmail())!=null){
             throw new DuplicateDonorException("Email already taken");
         }
-        donorRepository.save(donor);
+        validatePhone(donor.getDonorPhone());
+        Donor flagDonor=donorRepository.save(donor);
+        if (flagDonor==null)return false;
         return true;
     }
 
